@@ -6,4 +6,16 @@ class UserController < ActionController::Base
   def index
   	
   end
+
+  def create
+  	@user = params[:user]
+    @user.add_role(params[:user][:role])
+  	if @user.save
+  		response_hash = {:users_count => users.count}
+      render :json => response_hash, :status => :ok
+    else
+      response_hash = {:errors => @user.errors.full_messages}
+      render :json => response_hash, :status => :error
+  	end
+  end
 end
