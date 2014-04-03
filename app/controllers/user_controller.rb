@@ -18,4 +18,16 @@ class UserController < ActionController::Base
       render :json => response_hash, :status => :error
   	end
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_role(params[:user][:role])
+    if @user.update_attributes
+      response_hash = {:users_count => users.count}
+      render :json => response_hash, :status => :ok
+    else
+      response_hash = {:errors => @user.errors.full_messages}
+      render :json => response_hash, :status => :error
+    end
+  end
 end
