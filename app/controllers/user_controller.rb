@@ -22,7 +22,7 @@ class UserController < ActionController::Base
   def update
     @user = User.find(params[:id])
     @user.update_role(params[:user][:role])
-    if @user.update_attributes
+    if @user.update_attributes(params[:user])
       response_hash = {:users_count => users.count}
       render :json => response_hash, :status => :ok
     else
