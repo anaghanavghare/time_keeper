@@ -49,3 +49,4 @@ end
 gem 'debugger'
 gem 'httparty'
 gem 'protected_attributes'
+gem 'angularjs-rails'

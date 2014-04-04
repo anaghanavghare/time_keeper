@@ -1,0 +1,10 @@
+<div ng-controller="usersController">
+    <h1>{{message}}</h1>
+    <ul>
+        <li ng-repeat="user in usersData">
+            {{user.id}}
+            <br>
+            {{user.email}}
+        </li>
+    </ul>
+</div>

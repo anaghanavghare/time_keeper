@@ -9,5 +9,7 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require angular.min
-//= require angular-route.min
+//= require angular
+//= require angular-route
+//= require routes
+//= require usersController
