@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   roles :admin, :user
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles,:first_name, :last_name
 
   has_many :projects, dependent: :destroy
 
