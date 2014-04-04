@@ -5,7 +5,16 @@ class UsersController < ApplicationController
   #layout 'application'
   def index
   	@users = User.all.reject { |u|  u.id == 1}
-    render :json => @users, :status => :ok
+    # render :json => @users, :status => :ok
+  end
+
+  def show
+    @user = User.find(params[:id])
+    if @user
+      render :json => @user, :status => :ok
+    else
+      render :json => "User not found", :status => :error
+    end
   end
 
   def create
