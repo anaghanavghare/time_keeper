@@ -5,27 +5,47 @@ class UsersController < ApplicationController
   #layout 'application'
   def index
   	@users = User.all.reject { |u|  u.id == 1}
-    render :json => @users, :status => :ok
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @users.to_json
+      }
+    end
   end
 
   def create
   	@user = params[:user]
     @user.add_role(params[:user][:role])
   	if @user.save
-  		response_hash = {:users_count => User.count}
-      render :json => response_hash, :status => :ok
+  		@response_hash = {:users_count => User.count}
+      @status = "ok"
     else
-      response_hash = {:errors => @user.errors.full_messages}
-      render :json => response_hash, :status => :error
+      @response_hash = {:errors => @user.errors.full_messages}
+      @status = "error"
   	end
+
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @response_hash.to_json, :status => @status
+      }
+    end
   end
 
   def edit
     @user = User.find(params[:id])
     if @user
-      render :json => @user, :status => :ok
+      @status = "ok"
     else
-      render :json => "User not found", :status => :error
+      @user = "User not found"
+      @status = "error"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @user.to_json, :status => @status
+      }
     end
   end
 
@@ -33,20 +53,36 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_role(params[:user][:role])
     if @user.update_attributes(params[:user])
-      response_hash = {:users_count => User.count}
-      render :json => response_hash, :status => :ok
+      @response_hash = {:users_count => User.count}
+      @status = "ok"
     else
-      response_hash = {:errors => @user.errors.full_messages}
-      render :json => response_hash, :status => :error
+      @response_hash = {:errors => @user.errors.full_messages}
+      @status = "error"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @response_hash.to_json, :status => @status
+      }
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     if @user and @user.destroy
-      render :json => "User was delted succesfully.", :status => :ok
+      @user = "User was delted succesfully."
+      @status = "ok"
     else
-      render :json => "User not found", :status => :error
+      @user = "User not found"
+      @status = "error"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @user.to_json, :status => @status
+      }
     end
   end
 end
