@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
 
+  has_many :projects, dependent: :destroy
+
   def add_role(user_role)
     return self if user_role.blank?
     _role = user_role.to_s.downcase.to_sym
