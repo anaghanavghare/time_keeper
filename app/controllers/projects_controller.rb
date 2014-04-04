@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   def create
   	@project = params[:project]
   	if @project.save
+      ProjectMailer.project_email(@project, current_user.email).deliver
   		response_hash = {:projects_count => Project.count}
       render :json => response_hash, :status => :ok
     else
@@ -30,6 +31,9 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
+      if @project.doc_name.changed?
+        ProjectMailer.project_email(@project, current_user.email).deliver
+      end
       response_hash = {:projects_count => Project.count}
       render :json => response_hash, :status => :ok
     else
