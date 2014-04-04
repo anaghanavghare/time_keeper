@@ -13,6 +13,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    if @user
+      @status = "ok"
+    else
+      @user = "User not found"
+      @status = "error"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json{
+        render :json => @user.to_json, :status => @status
+      }
+    end
+  end
+
   def create
   	@user = params[:user]
     @user.add_role(params[:user][:role])
