@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   	@user = params[:user]
     @user.add_role(params[:user][:role])
   	if @user.save
-  		response_hash = {:users_count => users.count}
+  		response_hash = {:users_count => User.count}
       render :json => response_hash, :status => :ok
     else
       response_hash = {:errors => @user.errors.full_messages}
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_role(params[:user][:role])
     if @user.update_attributes(params[:user])
-      response_hash = {:users_count => users.count}
+      response_hash = {:users_count => User.count}
       render :json => response_hash, :status => :ok
     else
       response_hash = {:errors => @user.errors.full_messages}
