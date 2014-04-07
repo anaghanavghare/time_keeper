@@ -10,11 +10,16 @@ class ApplicationController < ActionController::Base
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = exception.message
+    redirect_to root_url
+  end
+
   protected
 
-    def verified_request?
-      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-    end
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+  end
 
   def require_admin?
     if !(current_user && current_user.has_any_role?(:admin))
