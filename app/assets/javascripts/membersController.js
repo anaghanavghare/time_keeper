@@ -2,10 +2,12 @@ timeKeeperApp.controller('membersController', ['$scope', '$http', function ($sco
     $scope.formData = {
         user: {}
     };
-    $scope.processForm = function() {
-        $http.post('/members.json', angular.toJson($scope.formData))
-        .success(function(data) {
-            console.log(data);
-        });
+    $scope.processForm = function(isValid) {
+        if (isValid) {
+            $http.post('/members.json', angular.toJson($scope.formData))
+            .success(function(data) {
+                console.log(data);
+            });
+        }
     };
 }]);

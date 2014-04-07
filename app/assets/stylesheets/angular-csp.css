@@ -1,0 +1,28 @@
+/* Include this file in your html if you are using the CSP mode. */
+
+@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-block-transitions {
+  transition:0s all!important;
+  -webkit-transition:0s all!important;
+}
+
+.ng-valid       { background-color: #DFF0D8; }
+.ng-invalid     { background-color: #F2DEDE; }
+.ng-pristine    { background-color: #F5F5F5; }
+.ng-dirty       { background-color: #FCF8E3; }
+
+/* really specific css rules applied by angular */
+.ng-invalid-required        {  }
+.ng-invalid-minlength       {  }
+.ng-valid-max-length        {  }
