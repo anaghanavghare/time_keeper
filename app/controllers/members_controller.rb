@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class MembersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   before_filter :authenticate_user!
@@ -11,6 +11,10 @@ class UsersController < ApplicationController
         render :json => @users.to_json
       }
     end
+  end
+
+  def new
+    @user = User.new
   end
 
   def show
@@ -31,8 +35,8 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = params[:user]
-    @user.add_role(params[:user][:role])
+  	@user = User.new(params[:user])
+    @user.add_role("admin")
   	if @user.save
   		@response_hash = {:users_count => User.count}
       @status = "ok"
