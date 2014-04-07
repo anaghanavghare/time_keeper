@@ -1,0 +1,10 @@
+<div ng-controller="membersController">
+    <form name="membersCreateForm" ng-submit="processForm()" novalidate>
+        <input type="text" ng-model="formData.user.email" placeholder="Email" required>
+        <input type="password" ng-model="formData.user.password" placeholder="Password" required>
+        <input type="password" ng-model="formData.user.password_confirmation" placeholder="Confirm Password" required>
+        Admin<input type="radio" ng-model="formData.user.roles" name="roles" value="admin">
+        User<input type="radio" ng-model="formData.user.roles" name="roles" value="user">
+        <input type="submit" value="Create User">
+    </form>
+</div>

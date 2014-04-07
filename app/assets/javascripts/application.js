@@ -12,4 +12,4 @@
 //= require angular
 //= require angular-route
 //= require routes
-//= require usersController
+//= require membersController
