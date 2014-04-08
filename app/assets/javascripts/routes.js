@@ -4,7 +4,11 @@ timeKeeperApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/members', {
-        templateUrl: '/assets/partials/add-members.html',
+        templateUrl: '/assets/partials/members.html',
+        controller: 'membersController'
+      }).
+      when('/create_member', {
+        templateUrl: '/assets/partials/create-member.html',
         controller: 'membersController'
       });
   }]);
