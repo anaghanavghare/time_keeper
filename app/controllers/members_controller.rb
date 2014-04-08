@@ -9,7 +9,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        render :json => @users.to_json
+        render :json => @users.as_json
       }
     end
   end
@@ -30,7 +30,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        render :json => @user.to_json, :status => @status
+        render :json => @user.as_json, :status => @status
       }
     end
   end
@@ -66,7 +66,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        render :json => @user.to_json, :status => @status
+        render :json => @user.as_json, :status => @status
       }
     end
   end
@@ -103,7 +103,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        render :json => @user.to_json, :status => @status
+        render :json => @user.as_json, :status => @status
       }
     end
   end
