@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   before_filter :authenticate_user!
-  load_and_authorize_resource :user, :parent => false
+  #load_and_authorize_resource :user, :parent => false
   #layout 'application'
   def index
   	@users = User.all.reject { |u|  u.id == 1}

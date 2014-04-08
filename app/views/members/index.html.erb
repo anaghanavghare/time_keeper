@@ -3,6 +3,7 @@
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
   <%= link_to "sign out", destroy_user_session_path, method: :delete %>
   <a href="#/members">Members</a>
+  <a href="#/create_member">Create a member</a>
   <ng-view></ng-view>
 <% else %>
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
