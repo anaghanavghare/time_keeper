@@ -34,4 +34,15 @@ class User < ActiveRecord::Base
     self.roles = _role  #unless self.has_role?(_role)
     self
   end
+
+  def as_json
+    response_hash = {
+      :first_name => self.first_name,
+      :last_name => self.last_name,
+      :id => self.id,
+      :roles => self.roles.first,
+      :email => self.email
+    }
+    response_hash
+  end
 end
