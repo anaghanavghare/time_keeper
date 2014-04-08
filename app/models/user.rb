@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   has_many :projects, dependent: :destroy
 
+  validates_presence_of :roles, :first_name, :last_name
+
   def add_role(user_role)
     return self if user_role.blank?
     _role = user_role.to_s.downcase.to_sym
