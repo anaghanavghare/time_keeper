@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-	attr_accessible :name, :doc_name, :timeframe, :user_id
+  attr_accessible :name, :doc_name, :timeframe, :user_id
 
   belongs_to :user
 
