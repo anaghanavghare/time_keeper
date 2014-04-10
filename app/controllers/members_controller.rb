@@ -39,7 +39,7 @@ class MembersController < ApplicationController
   	@user = User.new(params[:user])
     @user.add_role(params[:user][:roles])
   	if @user.save
-  		@response_hash = {:user => @user}
+  		@response_hash = {:user => @user.as_json}
       @status = "ok"
     else
       @response_hash = {:errors => @user.errors.full_messages}
@@ -75,7 +75,7 @@ class MembersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_role(params[:user][:roles])
     if @user.update_attributes(params[:user])
-      @response_hash = {:user => @user}
+      @response_hash = {:user => @user.as_json}
       @status = "ok"
     else
       @response_hash = {:errors => @user.errors.full_messages}
