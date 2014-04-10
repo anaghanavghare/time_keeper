@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   before_filter :authenticate_user!
-  #load_and_authorize_resource :user, :parent => false
+  load_and_authorize_resource :user, :parent => false
   #layout 'application'
   def index
   	@users = User.all.reject { |u|  u.id == 1}
@@ -39,7 +39,7 @@ class MembersController < ApplicationController
   	@user = User.new(params[:user])
     @user.add_role(params[:user][:roles])
   	if @user.save
-  		@response_hash = {:users_count => User.count}
+  		@response_hash = {:user => @user}
       @status = "ok"
     else
       @response_hash = {:errors => @user.errors.full_messages}
@@ -75,7 +75,7 @@ class MembersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_role(params[:user][:roles])
     if @user.update_attributes(params[:user])
-      @response_hash = {:users_count => User.count}
+      @response_hash = {:user => @user}
       @status = "ok"
     else
       @response_hash = {:errors => @user.errors.full_messages}
