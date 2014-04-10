@@ -1,9 +1,10 @@
 <div ng-controller="membersController">
     <ul>
-        <li ng-repeat="member in members">
-            <span>{{member.first_name}}</span>
-            <strong>{{member.email}}</strong>
-            <strong>{{member.roles}}</strong>
+        <li ng-repeat="member in members track by $index">
+            <span>{{member.first_name}}</span> | 
+            <strong>{{member.email}}</strong> | 
+            <strong>{{member.roles}}</strong> |
+            <a href="#/delete_member" ng-click="deleteMember(member)">Delete</a>
         </li>
     </ul>
 </div>

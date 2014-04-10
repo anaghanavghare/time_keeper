@@ -10,5 +10,12 @@ timeKeeperApp.config(['$routeProvider',
       when('/create_member', {
         templateUrl: '/assets/partials/create-member.html',
         controller: 'membersController'
+      }).
+      when('/delete_member', {
+        templateUrl: '/assets/partials/members.html',
+        controller: 'membersController'
+      }).
+      otherwise({
+        redirecTo: '/members'
       });
   }]);
