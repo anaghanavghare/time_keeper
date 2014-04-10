@@ -103,7 +103,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        render :json => @user.as_json, :status => @status
+        render :json => User.all.as_json, :status => @status
       }
     end
   end
